@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { BookService } from '../../core/services/book.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +16,7 @@ export class ProfileComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private bookService: BookService,
   ) {}
 
   ngOnInit() {
@@ -24,6 +26,7 @@ export class ProfileComponent {
   }
 
   logout() {
+    this.bookService.clearCache();
     this.authService.logout();
     this.router.navigate(['/auth/login']);
   }

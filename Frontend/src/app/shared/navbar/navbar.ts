@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { BookService } from '../../core/services/book.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +16,7 @@ export class NavbarComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private bookService: BookService,
   ) {}
 
   ngOnInit() {
@@ -30,6 +32,7 @@ export class NavbarComponent {
   }
 
   logout() {
+    this.bookService.clearCache();
     this.authService.logout();
     this.router.navigate(['/auth/login']);
   }

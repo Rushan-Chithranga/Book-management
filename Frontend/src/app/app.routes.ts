@@ -1,23 +1,58 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
-import { HomeComponent } from './features/home/home';
-import { ProfileComponent } from './features/profile/profile';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-
   {
     path: 'auth',
-    loadChildren: () =>
-      import('./features/auth/auth-routing.module').then((m) => m.AuthRoutingModule),
+    children: [
+      {
+        path: 'login',
+        loadComponent: () => import('./features/auth/login/login').then((m) => m.LoginComponent),
+      },
+      {
+        path: 'register',
+        loadComponent: () =>
+          import('./features/auth/register/register').then((m) => m.RegisterComponent),
+      },
+    ],
   },
+
   {
-    path: 'books',
+    path: '',
     canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./features/books/books-routing.module').then((m) => m.BooksRoutingModule),
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./features/home/home').then((m) => m.HomeComponent),
+      },
+
+      {
+        path: 'profile',
+        loadComponent: () => import('./features/profile/profile').then((m) => m.ProfileComponent),
+      },
+
+      {
+        path: 'books',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./features/books/book-list/book-list').then((m) => m.BookListComponent),
+          },
+          {
+            path: 'create',
+            loadComponent: () =>
+              import('./features/books/book-form/book-form').then((m) => m.BookFormComponent),
+          },
+          {
+            path: 'edit/:id',
+            loadComponent: () =>
+              import('./features/books/book-form/book-form').then((m) => m.BookFormComponent),
+          },
+        ],
+      },
+    ],
   },
 
   { path: '**', redirectTo: 'auth/login' },
