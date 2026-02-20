@@ -40,8 +40,8 @@ Create a `.env` file in the project root:
 DB_HOST=localhost
 DB_PORT=3306
 DB_NAME=book_db
-DB_USER=rushan
-DB_PASSWORD=12345678
+DB_USER=
+DB_PASSWORD=
 
 JWT_KEY=YOUR_SUPER_SECRET_KEY_32+CHARACTERS
 JWT_ISSUER=BookApi
