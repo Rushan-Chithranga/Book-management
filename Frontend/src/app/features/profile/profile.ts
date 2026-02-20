@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
@@ -18,12 +18,14 @@ export class ProfileComponent {
     private authService: AuthService,
     private userService: UserService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     private bookService: BookService,
   ) {}
 
   ngOnInit() {
     this.userService.getMe().subscribe((user) => {
       this.user = user;
+      this.cdr.detectChanges();
     });
   }
 

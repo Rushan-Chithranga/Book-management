@@ -20,7 +20,6 @@ export class AuthService {
   register(data: any) {
     return this.http
       .post<any>(`${this.API}/register`, data)
-      .pipe(tap((res) => localStorage.setItem('token', res.token)));
   }
 
   getToken(): string | null {
