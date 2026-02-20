@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { BookService } from '../../core/services/book.service';
+import { UserService } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,12 +16,13 @@ export class ProfileComponent {
 
   constructor(
     private authService: AuthService,
+    private userService: UserService,
     private router: Router,
     private bookService: BookService,
   ) {}
 
   ngOnInit() {
-    this.authService.getMe().subscribe((user) => {
+    this.userService.getMe().subscribe((user) => {
       this.user = user;
     });
   }

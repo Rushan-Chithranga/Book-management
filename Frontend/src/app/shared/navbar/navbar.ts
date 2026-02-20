@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { BookService } from '../../core/services/book.service';
+import { UserService } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,7 @@ export class NavbarComponent {
   initial = '?';
 
   constructor(
+    private userService: UserService,
     private authService: AuthService,
     private router: Router,
     private bookService: BookService,
@@ -21,7 +23,7 @@ export class NavbarComponent {
 
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
-      this.authService.getMe().subscribe((user) => {
+      this.userService.getMe().subscribe((user) => {
         this.initial = user?.fullName?.charAt(0)?.toUpperCase() ?? '?';
       });
     }

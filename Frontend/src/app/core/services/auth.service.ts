@@ -23,13 +23,6 @@ export class AuthService {
       .pipe(tap((res) => localStorage.setItem('token', res.token)));
   }
 
-  getMe(): Observable<any> {
-    if (this.userCache) {
-      return of(this.userCache);
-    }
-    return this.http.get<any>(`${this.API}/me`).pipe(tap((user) => (this.userCache = user)));
-  }
-
   getToken(): string | null {
     return localStorage.getItem('token');
   }

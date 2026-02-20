@@ -7,7 +7,7 @@ namespace Backend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize] // 🔐 Require JWT
+[Authorize]
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
