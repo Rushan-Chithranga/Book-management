@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { BookService } from '../../../core/services/book.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -19,6 +19,7 @@ export class BookFormComponent {
     private bookService: BookService,
     private router: Router,
     private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -39,9 +40,10 @@ export class BookFormComponent {
           title: book.title,
           author: book.author,
           isbn: book.isbn,
-          publicationDate: book.publicationDate,
+          publicationDate: book.publicationDate ? book.publicationDate.split('T')[0] : '',
         });
         this.loading = false;
+        this.cdr.detectChanges();
       });
     }
   }
