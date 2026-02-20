@@ -1,59 +1,101 @@
-# Frontend
+# 📖 Book Management App (Frontend)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+## 🚀 Tech Stack
 
-## Development server
+- Angular (Standalone Components)
+- TypeScript
+- Tailwind CSS
+- Reactive Forms
+- JWT Authentication
 
-To start a local development server, run:
+---
+
+## 📂 Project Structure
+
+```bash
+src/
+├── features/
+│ ├── auth/
+│ ├── books/
+│ ├── home/
+│ ├── profile/
+├── Models/
+│ ├── book/
+├── shared/
+│ ├── navbar/
+├── core/
+│ ├── services/
+│ ├── guards/
+├── environments/
+```
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 2️⃣ Configure API URL
+
+Edit file:
+
+src/environments/environment.ts
+
+```ts
+export const environment = {
+  apiUrl: 'http://localhost:5026/api',
+};
+```
+
+---
+
+### 3️⃣ Run Application
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Application URL: http://localhost:4200
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🔐 Authentication
 
-```bash
-ng generate component component-name
-```
+- Login stores JWT in localStorage
+- AuthGuard protects routes
+- HTTP Interceptor attaches Bearer token
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 📌 Features
 
-## Building
+- Register & Login
+- Create Book
+- Edit Book
+- Delete Book
+- Reactive Form Validation
+- Date Handling (ISO → yyyy-MM-dd conversion)
 
-To build the project run:
+---
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## 📦 Build For Production
 
 ```bash
-ng test
+ng build --configuration production
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## ☁️ Deployment
 
-```bash
-ng e2e
-```
+Recommended: Azure Static Web Apps
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## ✨ Author
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Book Management System
