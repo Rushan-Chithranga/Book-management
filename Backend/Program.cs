@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "MyWebApi",
+        Title = "Bookstore API",
         Version = "v1"
     });
 
