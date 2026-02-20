@@ -34,7 +34,7 @@ public class AuthService : IAuthService
         _db.Users.Add(user);
         await _db.SaveChangesAsync();
 
-        var (token, expiresAtUtc) = _jwt.CreateToken(user);
+        var token = _jwt.CreateToken(user);
 
         return new AuthResponseDto
         {
@@ -42,7 +42,7 @@ public class AuthService : IAuthService
             FullName = user.FullName,
             Email = user.Email,
             Token = token,
-            ExpiresAtUtc = expiresAtUtc
+            ExpiresAtUtc = DateTime.UtcNow.AddMinutes(int.Parse(Environment.GetEnvironmentVariable("JWT_EXPIRE_MINUTES")!))
         };
     }
 
@@ -57,7 +57,8 @@ public class AuthService : IAuthService
         if (result == PasswordVerificationResult.Failed)
             throw new Exception("Invalid email or password.");
 
-        var (token, expiresAtUtc) = _jwt.CreateToken(user);
+        var token = _jwt.CreateToken(user);
+        var expiresAtUtc = DateTime.UtcNow.AddMinutes(int.Parse(Environment.GetEnvironmentVariable("JWT_EXPIRE_MINUTES")!));
 
         return new AuthResponseDto
         {
