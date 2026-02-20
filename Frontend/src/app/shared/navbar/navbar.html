@@ -1,0 +1,43 @@
+<nav class="bg-gray-900 text-white px-8 py-4 flex justify-between items-center shadow-lg">
+
+  <a routerLink="/"
+    class="flex items-center gap-2 text-xl font-extrabold tracking-tight hover:text-blue-400 transition">
+    📚 <span>BookShelf</span>
+  </a>
+
+  <div class="flex items-center gap-6">
+
+    <ng-container *ngIf="isLoggedIn()">
+      <a routerLink="/" routerLinkActive="text-blue-400" [routerLinkActiveOptions]="{ exact: true }"
+        class="text-sm font-medium hover:text-blue-400 transition">
+        Home
+      </a>
+      <a routerLink="/books" routerLinkActive="text-blue-400"
+        class="text-sm font-medium hover:text-blue-400 transition">
+        Books
+      </a>
+
+      <a routerLink="/profile" class="relative group">
+        <div
+          class="w-9 h-9 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center text-white font-bold text-sm transition cursor-pointer">
+          {{ initial }}
+        </div>
+        <span
+          class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-700 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
+          My Profile
+        </span>
+      </a>
+    </ng-container>
+
+    <ng-container *ngIf="!isLoggedIn()">
+      <a routerLink="/auth/login" class="text-sm font-medium hover:text-blue-400 transition">
+        Login
+      </a>
+      <a routerLink="/auth/register"
+        class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition">
+        Register
+      </a>
+    </ng-container>
+
+  </div>
+</nav>

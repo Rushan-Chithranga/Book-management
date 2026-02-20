@@ -1,0 +1,90 @@
+<div class="min-h-screen bg-gray-50">
+
+  <div class="bg-white border-b">
+    <div class="max-w-6xl mx-auto px-8 py-16 flex flex-col md:flex-row items-center gap-10">
+      <div class="flex-1">
+        <span class="bg-blue-100 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
+          Book Management System
+        </span>
+        <h1 class="text-4xl font-extrabold text-gray-800 mt-4 leading-tight">
+          Manage Your Book Collection <br />
+          <span class="text-blue-600">Simply & Efficiently</span>
+        </h1>
+        <p class="text-gray-500 mt-4 text-lg">
+          Keep track of every book you own. Add new titles, update details,
+          and manage your entire collection from one clean dashboard.
+        </p>
+        <div class="mt-8 flex gap-4">
+          <a routerLink="/books"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition">
+            Browse Books
+          </a>
+          <a routerLink="/books/create"
+            class="border border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold px-6 py-3 rounded-lg transition">
+            + Add New Book
+          </a>
+        </div>
+      </div>
+
+      <div class="flex-1 flex justify-center">
+        <div class="bg-blue-50 rounded-2xl p-10 flex flex-col items-center gap-4 w-72">
+          <div class="text-7xl">📚</div>
+          <p class="text-blue-600 font-semibold text-lg">Your Digital Book Store</p>
+          <p class="text-gray-400 text-sm text-center">Organize and access your books anytime, anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-8 py-16">
+    <h2 class="text-2xl font-bold text-gray-800 text-center mb-10">Everything You Need</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition">
+        <div class="bg-blue-100 text-blue-600 rounded-lg w-12 h-12 flex items-center justify-center text-2xl mb-4">
+          📖
+        </div>
+        <h3 class="font-bold text-gray-800 text-lg mb-2">Browse Books</h3>
+        <p class="text-gray-500 text-sm">
+          View your entire book collection in a clean, organized table with instant access to all details.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition">
+        <div class="bg-green-100 text-green-600 rounded-lg w-12 h-12 flex items-center justify-center text-2xl mb-4">
+          ✏️
+        </div>
+        <h3 class="font-bold text-gray-800 text-lg mb-2">Add & Edit</h3>
+        <p class="text-gray-500 text-sm">
+          Easily add new books or update existing ones with title, author, ISBN and publication date.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition">
+        <div class="bg-red-100 text-red-500 rounded-lg w-12 h-12 flex items-center justify-center text-2xl mb-4">
+          🔐
+        </div>
+        <h3 class="font-bold text-gray-800 text-lg mb-2">Secure Access</h3>
+        <p class="text-gray-500 text-sm">
+          JWT-based authentication ensures only authorized users can manage the library.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bg-blue-600 mt-4">
+    <div class="max-w-6xl mx-auto px-8 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-white text-2xl font-bold">Ready to manage your books?</h3>
+        <p class="text-blue-200 mt-1">Start by browsing your collection or adding a new book.</p>
+      </div>
+      <a routerLink="/books"
+        class="bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-blue-50 transition whitespace-nowrap">
+        Go to Books →
+      </a>
+    </div>
+  </div>
+
+</div>

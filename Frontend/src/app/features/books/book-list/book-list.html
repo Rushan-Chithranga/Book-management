@@ -1,0 +1,71 @@
+<div class="min-h-screen bg-gray-50 p-8">
+
+  <div class="max-w-5xl mx-auto">
+    <div class="flex justify-between items-center mb-8">
+      <div>
+        <h2 class="text-3xl font-extrabold text-gray-800">📚 Books</h2>
+        <p class="text-gray-500 text-sm mt-1">Manage your book collection</p>
+      </div>
+      <a routerLink="/books/create"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-lg transition flex items-center gap-2">
+        + Add Book
+      </a>
+    </div>
+
+    <ng-container *ngIf="loading; else content">
+      <div class="flex flex-col items-center justify-center py-24 text-gray-400">
+        <div class="text-5xl mb-4">⏳</div>
+        <p class="text-lg font-medium">Loading books...</p>
+      </div>
+    </ng-container>
+
+    <ng-template #content>
+
+      <div *ngIf="books.length === 0"
+        class="flex flex-col items-center justify-center py-24 text-gray-400 bg-white rounded-xl shadow-sm border border-gray-100">
+        <div class="text-6xl mb-4">📭</div>
+        <p class="text-lg font-medium">No books found</p>
+        <p class="text-sm mt-1">Start by adding your first book</p>
+        <a routerLink="/books/create"
+          class="mt-6 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2 rounded-lg transition">
+          + Add Book
+        </a>
+      </div>
+
+      <div *ngIf="books.length > 0" class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <table class="w-full">
+          <thead class="bg-gray-50 border-b border-gray-100">
+            <tr>
+              <th class="text-left text-xs font-semibold text-gray-500 uppercase tracking-wide p-4">Title</th>
+              <th class="text-left text-xs font-semibold text-gray-500 uppercase tracking-wide p-4">Author</th>
+              <th class="text-left text-xs font-semibold text-gray-500 uppercase tracking-wide p-4">ISBN</th>
+              <th class="text-left text-xs font-semibold text-gray-500 uppercase tracking-wide p-4">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let b of books" class="border-t border-gray-50 hover:bg-blue-50 transition">
+              <td class="p-4 font-medium text-gray-800">{{ b.title }}</td>
+              <td class="p-4 text-gray-600">{{ b.author }}</td>
+              <td class="p-4 text-gray-400 text-sm font-mono">{{ b.isbn }}</td>
+              <td class="p-4 flex items-center gap-3">
+                <a [routerLink]="['/books/edit', b.id]"
+                  class="text-sm font-medium text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg transition">
+                  ✏️ Edit
+                </a>
+                <button (click)="delete(b.id)"
+                  class="text-sm font-medium text-red-600 hover:text-red-800 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition">
+                  🗑️ Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="px-4 py-3 bg-gray-50 border-t border-gray-100 text-xs text-gray-400">
+          {{ books.length }} book{{ books.length !== 1 ? 's' : '' }} total
+        </div>
+      </div>
+
+    </ng-template>
+  </div>
+</div>

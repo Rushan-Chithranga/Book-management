@@ -1,0 +1,65 @@
+<div class="min-h-screen bg-gray-50 flex items-center justify-center p-8">
+  <div class="bg-white rounded-xl shadow-sm border border-gray-100 w-full max-w-lg p-8">
+
+    <div class="mb-8">
+      <h2 class="text-2xl font-extrabold text-gray-800">
+        {{ editId ? '✏️ Edit Book' : '📖 Add New Book' }}
+      </h2>
+      <p class="text-gray-500 text-sm mt-1">
+        {{ editId ? 'Update the book details below' : 'Fill in the details to add a new book' }}
+      </p>
+    </div>
+
+    <div *ngIf="loading" class="flex flex-col items-center py-10 text-gray-400">
+      <div class="text-4xl mb-3">⏳</div>
+      <p>Loading book details...</p>
+    </div>
+
+    <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="save()">
+
+      <div class="mb-5">
+        <label class="block text-sm font-semibold text-gray-700 mb-1.5">Title</label>
+        <input formControlName="title" placeholder="e.g. The Great Gatsby"
+          class="w-full border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none p-2.5 rounded-lg text-sm transition" />
+        <span *ngIf="form.get('title')?.invalid && form.get('title')?.touched"
+          class="text-red-500 text-xs mt-1 block">Title is required</span>
+      </div>
+
+      <div class="mb-5">
+        <label class="block text-sm font-semibold text-gray-700 mb-1.5">Author</label>
+        <input formControlName="author" placeholder="e.g. F. Scott Fitzgerald"
+          class="w-full border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none p-2.5 rounded-lg text-sm transition" />
+        <span *ngIf="form.get('author')?.invalid && form.get('author')?.touched"
+          class="text-red-500 text-xs mt-1 block">Author is required</span>
+      </div>
+
+      <div class="mb-5">
+        <label class="block text-sm font-semibold text-gray-700 mb-1.5">ISBN</label>
+        <input formControlName="isbn" placeholder="e.g. 978-3-16-148410-0"
+          class="w-full border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none p-2.5 rounded-lg text-sm font-mono transition" />
+        <span *ngIf="form.get('isbn')?.invalid && form.get('isbn')?.touched"
+          class="text-red-500 text-xs mt-1 block">ISBN is required</span>
+      </div>
+
+      <div class="mb-8">
+        <label class="block text-sm font-semibold text-gray-700 mb-1.5">Publication Date</label>
+        <input type="date" formControlName="publicationDate"
+          class="w-full border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none p-2.5 rounded-lg text-sm transition" />
+        <span *ngIf="form.get('publicationDate')?.invalid && form.get('publicationDate')?.touched"
+          class="text-red-500 text-xs mt-1 block">Publication date is required</span>
+      </div>
+
+      <div class="flex gap-3">
+        <button type="submit" [disabled]="form.invalid"
+          class="flex-1 bg-blue-600 cursor-pointer hover:bg-blue-700 disabled:bg-blue-300 text-white font-semibold py-2.5 rounded-lg transition">
+          {{ editId ? 'Update Book' : 'Create Book' }}
+        </button>
+        <a routerLink="/books"
+          class="flex-1 text-center border cursor-pointer border-gray-200 hover:bg-gray-50 text-gray-600 font-semibold py-2.5 rounded-lg transition">
+          Cancel
+        </a>
+      </div>
+
+    </form>
+  </div>
+</div>
